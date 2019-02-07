@@ -88,6 +88,13 @@ $this->view->title = 'One artiicle';
         //$query = "SELECT * FROM categories WHERE title LIKE :search";
         //$cats = Category::findBySql($query, [':search' => '%app%'])->all();
 
+        // DB - 2 tables
+        // lazy
+        //$cats = Category::findOne(694);
+        // greedy
+        //$cats = Category::find()->with('products')->where('id=694')->all();
+
+        $cats = Category::find()->with('products')->all();
 
         return $this -> render('show', compact('cats'));
     }

@@ -19,7 +19,29 @@
 <!--$cat['title']-->
 
 <!-- работаем с бд-->
-<?php debug($cats) ?>
+<!-- ленивая загрузка - если есть связь - она срабатывает только когда
+о ней упоминают -->
+<?php // debug($cats) ?>
+<!-- cause getProductS -->
+<?php //echo count($cats->products) ?>
+<?php //debug($cats) ?>
+ <!-- greedy -->
+<?php //debug($cats) ?>
+<?php //echo count($cats[0]->products) ?>
+
+<!-- list - 41 query - lazy; 6 query - greedy -->
+<?php foreach ($cats as $cat) {
+    echo '<ul>';
+    echo '<li>' . $cat->title . '</li>';
+    $products = $cat -> products;
+    foreach ($products as $product) {
+        echo '<ul>';
+        echo '<li>' . $product->title . '</li>';
+        echo '</ul>';
+
+    }
+    echo '</ul>';
+} ?>
 
 <? //$this->registerJsFile('@web/js/scripts.js',['depends' => ['yii\web\YiiAsset']]) ?>
 <? //$this->registerJs("$('.container').append('<p>SHOW !!</p>');", \yii\web\View::POS_LOAD)?>
