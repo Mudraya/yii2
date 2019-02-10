@@ -8,12 +8,19 @@
 
 namespace app\models;
 use yii\base\Model;
+use yii\db\ActiveRecord;
 
-class TestForm extends Model
+class TestForm extends ActiveRecord
 {
-    public $name;
-    public $email;
-    public $text;
+    // для activeRecord - не обязательно
+//    public $name;
+//    public $email;
+//    public $text;
+
+// tableName
+public static function tableName() {
+    return 'posts';
+}
 
     // lables for fields (instead of lables in test.php - view)
     public function attributeLabels()
@@ -27,17 +34,18 @@ class TestForm extends Model
 
     //возвращает массив с правилами валидации формы
     //без валидации поле не будет загружено в модель
+    // or db
     public function rules() {
         return [
             // имя поля + валидатор + текст сообщения
-            [['name','email'], 'required'/*, 'message' => 'Поле обязательное'*/],
+            [['name','text'], 'required'/*, 'message' => 'Поле обязательное'*/],
             ['email', 'email'],
 //            ['name', 'string' , 'min' => 2, 'tooShort' => 'Wrong'],
 //            ['name', 'string' , 'max' => 5, 'tooLong' => 'Wrongg'],
-            ['name', 'string' , 'length' => [2,5] ],
-            ['name', 'myRule' ],
+           // ['name', 'string' , 'length' => [2,5] ],
+           // ['name', 'myRule' ],
             //['text', 'trim' ],
-            ['text', 'safe' ],
+            //['text', 'safe' ],
             ];
     }
 

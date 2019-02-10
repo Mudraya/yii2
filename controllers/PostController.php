@@ -31,13 +31,44 @@ class PostController extends AppController
             return 'test;';
         }
 
+        // for ActiveRecord save()
+        // new - insert
+        // find() - update
         $model = new TestForm();
+
+        // insert
+        // не из формы
+//        $model->name = 'Auggthor';
+//        $model->email = 'tt@tut.com';
+//        $model->text = 'tetsdffgx';
+//        //save(true) -> авто вызов валидации
+//        $model->save();
+
+        //update
+ //       $posts = TestForm::findOne(1);
+//        $posts -> email = '2@2.com';
+//        $posts -> save();
+
+        //delete
+//          $posts = TestForm::findOne(2);
+//          $posts -> delete();
+
+        //delete All
+        // работает без получения модели
+        //TestForm::deleteAll(['<','id', 2]);
+
+
         // загружаем данные в модель, используя маасовое заполнение
-        // проверяем загрузку и валтдацию данных
+        // проверяем загрузку и валидацию данных
         if ($model -> load(Yii::$app->request->post())){
             //debug($model);
             //die;
-            if ($model->validate()) {
+
+            //model
+            //if ($model->validate()) {
+
+            //activeRecord
+            if ($model->save()) {
                 //записываем одноразовое флеш сообщение
                 Yii::$app->session->setFlash('success', 'Данные приняты');
                 //обновление страниці - сброс формы

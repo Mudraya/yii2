@@ -29,6 +29,10 @@ use yii\helpers\Html;
 // \app\controllers\appcontroller\debug(Yii::$app);
 //debug(Yii::$app);
 //debug($model);
+
+// распечатка для проверки update delete db
+//debug($posts);
+
 $form = ActiveForm::begin(['options' => ['id' => 'testForm']]);
 ?>
 <?= $form->field($model, 'name')//->label('Imya')//->passwordInput() ?>
