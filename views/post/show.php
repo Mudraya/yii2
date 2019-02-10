@@ -1,6 +1,7 @@
 
 <? // $this->title= 'One article'; ?>
-
+<!--Import widget-->
+<?php use app\components\MyWidget; ?>
 <? $this->beginBlock('block1'); ?>
 <h1>Pfujkjdjr</h1>
 <? $this->endBlock(); ?>
@@ -30,18 +31,18 @@
 <?php //echo count($cats[0]->products) ?>
 
 <!-- list - 41 query - lazy; 6 query - greedy -->
-<?php foreach ($cats as $cat) {
-    echo '<ul>';
-    echo '<li>' . $cat->title . '</li>';
-    $products = $cat -> products;
-    foreach ($products as $product) {
-        echo '<ul>';
-        echo '<li>' . $product->title . '</li>';
-        echo '</ul>';
-
-    }
-    echo '</ul>';
-} ?>
+<?php //foreach ($cats as $cat) {
+//    echo '<ul>';
+//    echo '<li>' . $cat->title . '</li>';
+//    $products = $cat -> products;
+//    foreach ($products as $product) {
+//        echo '<ul>';
+//        echo '<li>' . $product->title . '</li>';
+//        echo '</ul>';
+//
+//    }
+//    echo '</ul>';
+//} ?>
 
 <? //$this->registerJsFile('@web/js/scripts.js',['depends' => ['yii\web\YiiAsset']]) ?>
 <? //$this->registerJs("$('.container').append('<p>SHOW !!</p>');", \yii\web\View::POS_LOAD)?>
@@ -69,4 +70,10 @@ $this->registerJs($js);
 
 ?>
 
-<? ?>
+<!-- Widget -->
+<?//php echo MyWidget::widget(['name' => 'Hatiko']); ?>
+
+<!--Вывод пользовательского контента-->
+<?php MyWidget::begin() ?>
+<h1>o la la!</h1>
+<?php MyWidget::end() ?>
