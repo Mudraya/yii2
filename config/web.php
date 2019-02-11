@@ -56,26 +56,26 @@ $config = [
             // взаимодействия с правилами
             'enableStrictParsing' => false,
             // добавление суффикса в конец ссылок
-            'suffix' => '.html',
+            //'suffix' => '.html',
             // перенапраление
             'rules' => [
 
-                // сначала идут более конкретное правило, затем более общие
-
-                // убираем суффикс для главной страницы
-                [
-                    'pattern' => '',
-                    'route' => 'site/index',
-                    'suffix' => '',
-                ],
-                // не удобно
-//                'about' => 'site/about',
-//                'contact' => 'site/contact',
-            // regular expression
-                // action - именованный параметр
-                //'<action:about|contact|login>' => 'site/<action>',
-                // стоит проверять, сущ. ли такая страница
-                '<a:\w+>' => 'site/<a>',
+//                // сначала идут более конкретное правило, затем более общие
+//
+//                // убираем суффикс для главной страницы
+//                [
+//                    'pattern' => '',
+//                    'route' => 'site/index',
+//                    'suffix' => '',
+//                ],
+//                // не удобно
+////                'about' => 'site/about',
+////                'contact' => 'site/contact',
+//            // regular expression
+//                // action - именованный параметр
+//                //'<action:about|contact|login>' => 'site/<action>',
+//                // стоит проверять, сущ. ли такая страница
+//                '<a:\w+>' => 'site/<a>',
             ],
         ],
 
@@ -83,6 +83,9 @@ $config = [
     'params' => $params,
 ];
 
+// гии - генерация кода. находиться в режиме разраба
+// при переносе на продакшн отключается
+// пропадает строка состоянию йии
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
@@ -97,6 +100,8 @@ if (YII_ENV_DEV) {
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
+        // allowed ip for gii module
+        'allowedIPs' => ['127.0.0.1'],
     ];
 }
 
