@@ -9,7 +9,7 @@ $config = [
     'bootstrap' => ['log'],
     //язык приложения
     'language' => 'ru',
-   // 'layout' => 'basic',
+    'layout' => 'main',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -18,6 +18,7 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'mwWdwADbpymCNjhNjgUxxAowmasY5gA5',
+            'baseUrl' => '',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -46,14 +47,38 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+        // настраиваем урл
         'urlManager' => [
+            // вкл ЧПУ
             'enablePrettyUrl' => true,
+            // показывать имя скрипта
             'showScriptName' => false,
+            // взаимодействия с правилами
+            'enableStrictParsing' => false,
+            // добавление суффикса в конец ссылок
+            'suffix' => '.html',
+            // перенапраление
             'rules' => [
+
+                // сначала идут более конкретное правило, затем более общие
+
+                // убираем суффикс для главной страницы
+                [
+                    'pattern' => '',
+                    'route' => 'site/index',
+                    'suffix' => '',
+                ],
+                // не удобно
+//                'about' => 'site/about',
+//                'contact' => 'site/contact',
+            // regular expression
+                // action - именованный параметр
+                //'<action:about|contact|login>' => 'site/<action>',
+                // стоит проверять, сущ. ли такая страница
+                '<a:\w+>' => 'site/<a>',
             ],
         ],
-        */
+
     ],
     'params' => $params,
 ];
